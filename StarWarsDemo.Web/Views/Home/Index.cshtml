@@ -1,0 +1,14 @@
+﻿@using StarWarsDemo.Web.VM
+@{
+    @model FilmListVm;
+}
+
+<div class="text-left">
+    <h1 class="display-4">Star Wars films</h1>
+    <ul>
+        @foreach (var film in Model.Films)
+        {
+            <li><a asp-controller="FilmDetails" asp-action="Details" asp-route-id="@film.Id" >@film.Title</a></li>
+        }
+    </ul>
+</div>

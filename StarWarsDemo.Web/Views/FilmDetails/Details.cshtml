@@ -1,0 +1,83 @@
+﻿@model StarWarsDemo.Web.VM.FilmDetailsVm
+<div class="text-center">
+    <h1>@Model.Title</h1>
+</div>
+<p>Director: @Model.Director</p>
+<p>ReleaseDate: @Model.ReleaseDate</p>
+<p>Created: @Model.Created</p>
+<p>Episode: @Model.EpisodeId</p>
+<p>Opening Crawl:</p> <p>@Html.Raw(Model.OpeningCrawl)</p>
+@if (Model.Planets?.Count > 0)
+{
+    <p>Planets:</p>
+    <ul>
+        @foreach (var name in Model.Planets)
+        {
+            <li>@name</li>
+        }
+    </ul>
+}
+@if (Model.Characters?.Count > 0)
+{
+    <p>Characters:</p>
+    <ul>
+        @foreach (var name in Model.Characters)
+        {
+            <li>@name</li>
+        }
+    </ul>
+}
+@if (Model.Species?.Count > 0)
+{
+    <p>Species:</p>
+    <ul>
+        @foreach (var name in Model.Species)
+        {
+            <li>@name</li>
+        }
+    </ul>
+}
+@if (Model.Vehicles?.Count > 0)
+{
+    <p>Vehicles:</p>
+    <ul>
+        @foreach (var name in Model.Vehicles)
+        {
+            <li>@name</li>
+        }
+    </ul>
+}
+@if (Model.Starships?.Count > 0)
+{
+    <p>Starships:</p>
+    <ul>
+        @foreach (var name in Model.Starships)
+        {
+            <li>@name</li>
+        }
+    </ul>
+}
+@if (Model.Ratings?.Count > 0)
+{
+    <p>Ratings:</p>
+    <ul>
+        @foreach (var rating in Model.Ratings)
+        {
+            <li>@rating</li>
+        }
+    </ul>
+}
+<div class="text-center">
+    <form asp-controller="FilmDetails" asp-action="AddRating" method="post">
+        <input type="number" name="newRating"/>
+        <input type="hidden" name="id" value="@Model.FilmId"/>
+        <input type="submit" name="add" value="Add new rating"/>
+    </form>
+    @if (Model.NewRatingErrors?.Count > 0)
+    {
+        @foreach (var error in Model.NewRatingErrors)
+        {
+            <p>@error</p>
+        }
+    }
+</div>
